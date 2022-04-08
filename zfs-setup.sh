@@ -2,7 +2,7 @@
 
 set -x
 
-if [ -n "$1" ]; then
+if [ -z "$1" ]; then
     echo "Specify disk"
     exit 1
 fi
