@@ -7,6 +7,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+DISK=$1
+
 parted $DISK -- mklabel gpt
 
 sgdisk -n3:1M:+512M -t3:EF00 $DISK
