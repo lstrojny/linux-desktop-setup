@@ -10,4 +10,9 @@
   boot.kernelParams = [ "nohibernate" ];
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
+  services.zfs.autoSnapshot = {
+    enable = true;
+    frequent = 8;
+    monthly = 6;
+  };
 }
