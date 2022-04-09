@@ -46,8 +46,13 @@
     fsType = "vfat";
   };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/bb599a6c-1ecd-46ec-af54-44f851175f08"; }];
+  swapDevices = [{
+    device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S6P7NJ0T104628N-part2";
+    randomEncryption = {
+      enable = true;
+      cipher = "aes-xts-plain64";
+    };
+  }];
 
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
