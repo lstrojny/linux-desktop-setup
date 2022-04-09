@@ -12,7 +12,7 @@ DISK=$1
 parted $DISK -- mklabel gpt
 
 sgdisk -n3:1M:+512M -t3:EF00 $DISK
-sgdisk -n2:512M:8G -t2:BF01 $DISK
+sgdisk -n2:513M:+16G -t2:BF01 $DISK
 sgdisk -n1:0:0 -t1:BF01 $DISK
 
 zpool create \
