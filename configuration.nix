@@ -5,13 +5,19 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./hardware-configuration-zfs.nix
-    ];
+  nix = {
+    package = pkgs.nixFlakes; # or versioned attributes like nix_2_7
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
-  system.copySystemConfiguration = true; 
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./hardware-configuration-zfs.nix
+  ];
+
+  system.copySystemConfiguration = true;
 
   networking.hostName = "hackstrojny";
   networking.hostId = "24041986";
@@ -67,7 +73,8 @@
     home = "/home/lstrojny";
     description = "Lars Strojny";
     extraGroups = [ "wheel" "networkmanager" ];
-    hashedPassword = "$6$3wh8GiYYOgFm321d$8CXIw54QA8FrrbbQB/XtIMUQq11CFVPzvMwg1vdDgW7bTFd92i6pihw9JQR2nqQfinCpK0dVgdRp7XuazWvaL.";
+    hashedPassword =
+      "$6$3wh8GiYYOgFm321d$8CXIw54QA8FrrbbQB/XtIMUQq11CFVPzvMwg1vdDgW7bTFd92i6pihw9JQR2nqQfinCpK0dVgdRp7XuazWvaL.";
   };
 
   # List packages installed in system profile. To search, run:
