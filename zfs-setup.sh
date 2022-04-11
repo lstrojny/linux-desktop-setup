@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -x
+set -e
 
 if [ -z "$1" ]; then
     echo "Specify disk"
@@ -21,14 +21,15 @@ zpool create \
     -o ashift=12 \
     -O acltype=posixacl \
     -O xattr=sa \
-    -O compression=lz4
+    -O compression=lz4 \
+    -R /mnt \
     zroot $DISK-part1
 
-zfs create -o mountpoint=legacy zroot/root
-zfs create -o mountpoint=legacy zroot/root/nix
-zfs create -o mountpoint=legacy -o devices=off -o setuid=off -o sync=disabled zroot/root/tmp
-zfs create -o mountpoint=legacy -o devices=off -o setuid=off zroot/root/var
-zfs create -o mountpoint=legacy -O encryption=aes-256-gcm -O keyformat=passphrase zroot/root/home
+zfs create -o mountpoint=/ zroot/root
+zfs create -o mountpoint=/nix zroot/root/nix
+zfs create -o mountpoint=/tmp -o devices=off -o setuid=off -o sync=disabled zroot/root/tmp
+zfs create -o mountpoint=/var -o devices=off -o setuid=off zroot/root/var
+zfs create -o mountpoint=/home -O encryption=aes-256-gcm -O keyformat=passphrase zroot/root/home
 
 mkswap $DISK-part2
 mkfs.vfat $DISK-part3
