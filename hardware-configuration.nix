@@ -6,6 +6,7 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
@@ -47,7 +48,8 @@
   };
 
   swapDevices = [{
-    device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S6P7NJ0T104628N-part2";
+    device =
+      "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S6P7NJ0T104628N-part2";
     randomEncryption = {
       enable = true;
       cipher = "aes-xts-plain64";
