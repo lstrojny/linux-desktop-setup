@@ -90,6 +90,7 @@
     lsof
     cryptsetup
     powertop
+    usbutils
   ];
 
   # Bluetooth
