@@ -11,6 +11,7 @@
       experimental-features = nix-command flakes
     '';
   };
+  nixpkgs.config.allowUnfree = true;
 
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -87,6 +88,10 @@
     lsof
     cryptsetup
   ];
+
+  # Bluetooth
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
