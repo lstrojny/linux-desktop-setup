@@ -87,6 +87,7 @@
     git
     lsof
     cryptsetup
+    powertop
   ];
 
   # Bluetooth
