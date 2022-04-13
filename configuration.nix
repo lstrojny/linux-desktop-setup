@@ -12,6 +12,20 @@
     '';
   };
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    (self: super: {
+      bluezFull = super.bluezFull.overrideAttrs (originalAttributes: rec
+      {
+        patches = originalAttributes.patches or [] ++ [
+          (self.fetchpatch {
+            name = "fix-mx-master-connectivity.diff";
+            url = "https://github.com/bluez/bluez/commit/7fe38a17f6bee713fde587487fc224b0ae390e8f.diff";
+            sha256 = "0iwpwlwkyqwc644fwd40snlvnwm1l48agq3y9sbizwksavmqd44v";
+          })
+        ];
+      });
+    })
+  ];
 
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
