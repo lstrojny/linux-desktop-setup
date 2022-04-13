@@ -47,6 +47,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/boot-fallback" = {
+    device = "/dev/disk/by-label/BOOT-FB";
+    fsType = "vfat";
+  };
+
   swapDevices = [
     {
       device =
