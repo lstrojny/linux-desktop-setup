@@ -112,6 +112,8 @@
     usbutils
     nix-index
 
+    unzip
+
     _1password-gui
     chromium
 
