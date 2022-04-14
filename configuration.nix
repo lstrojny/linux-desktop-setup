@@ -122,6 +122,8 @@
     signal-desktop
   ];
 
+  programs.vim.defaultEditor = true;
+
   programs.gnome-terminal.enable = true;
 
   programs.git.package = pkgs.gitFull;
