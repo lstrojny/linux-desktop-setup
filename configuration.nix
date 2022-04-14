@@ -11,7 +11,13 @@
       experimental-features = nix-command flakes
     '';
   };
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    chromium = {
+      commandLineArgs = [ "--enable-features=WebUIDarkMode" "--force-dark-mode" ];
+      enableWideVine = true;
+    };
+  };
   nixpkgs.overlays = [
     (self: super: {
       bluezFull = super.bluezFull.overrideAttrs (originalAttributes: rec {
@@ -104,7 +110,22 @@
     cryptsetup
     powertop
     usbutils
+    nix-index
+
+    _1password-gui
+    chromium
+
+    jetbrains.phpstorm
+
+    tdesktop
+    whatsapp-for-linux
+    signal-desktop
   ];
+
+  programs.gnome-terminal.enable = true;
+
+  programs.git.package = pkgs.gitFull;
+  programs.git.lfs.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;
