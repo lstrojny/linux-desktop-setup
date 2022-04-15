@@ -77,6 +77,7 @@
       font-size=12
       xkb-layout=de
       xkb-variant=nodeadkeys
+      palette=solarized
     '';
   };
 
