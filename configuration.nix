@@ -13,6 +13,7 @@
   };
   nixpkgs.config = {
     allowUnfree = true;
+    joypixels.acceptLicense = true;
     chromium = {
       commandLineArgs = [ "--enable-features=WebUIDarkMode" "--force-dark-mode" ];
       enableWideVine = true;
@@ -60,7 +61,8 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "de_DE.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
+    font = with pkgs; "${powerline-fonts}/share/consolefonts/ter-powerline-v14n.psf.gz";
+    packages = with pkgs; [ powerline-fonts ];
     keyMap = "de";
     earlySetup = true;
   };
@@ -128,6 +130,16 @@
   programs.vim.defaultEditor = true;
 
   programs.gnome-terminal.enable = true;
+  fonts = {
+    fonts = with pkgs; [
+      fira-code
+      fira-code-symbols
+      joypixels
+
+    ];
+    fontconfig.defaultFonts.monospace = [ "Fira Code Medium" ];
+    fontconfig.defaultFonts.emoji = [ "JoyPixels" ];
+  };
 
   programs.git.package = pkgs.gitFull;
   programs.git.lfs.enable = true;
