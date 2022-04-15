@@ -7,7 +7,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "amdgpu" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
