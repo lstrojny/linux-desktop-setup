@@ -60,11 +60,23 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "de_DE.UTF-8";
+
+  # TTY configuraton
   console = {
     font = with pkgs; "${powerline-fonts}/share/consolefonts/ter-powerline-v14n.psf.gz";
     packages = with pkgs; [ powerline-fonts ];
     keyMap = "de";
     earlySetup = true;
+  };
+  services.kmscon = {
+    enable = true;
+    hwRender = true;
+    extraConfig = ''
+      font-name=Fira Code Medium
+      font-size=12
+      xkb-layout=de
+      xkb-variant=nodeadkeys
+    '';
   };
 
   # Enable the X11 windowing system.
@@ -75,10 +87,6 @@
   services.xserver.displayManager.gdm.wayland = true;
   services.xserver.desktopManager.gnome.enable = true;
   hardware.opengl.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.layout = "de";
-  # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
