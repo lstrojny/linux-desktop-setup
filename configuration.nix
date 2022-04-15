@@ -120,6 +120,8 @@
     _1password-gui
     chromium
 
+    evolution
+
     jetbrains.phpstorm
 
     tdesktop
