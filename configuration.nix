@@ -19,7 +19,7 @@
       enableWideVine = true;
     };
   };
-  nixpkgs.overlays = [
+  nixpkgs.overlays = with builtins; [
     (self: super: {
       bluezFull = super.bluezFull.overrideAttrs (originalAttributes: rec {
         patches = originalAttributes.patches or [ ] ++ [
@@ -31,6 +31,7 @@
         ];
       });
     })
+    (import (fetchGit { url = "https://github.com/nix-community/nixt/"; }))
   ];
 
   imports = [ # Include the results of the hardware scan.
@@ -113,25 +114,31 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Utilities
+    unzip
+    usbutils
+    powertop
+    cryptsetup
     vim_configurable
     wget
-    nixfmt
-    git
     lsof
-    cryptsetup
-    powertop
-    usbutils
+
+    # Nix tools
     nix-index
+    nixfmt
+    nixt
 
-    unzip
-
+    # Core desktop apps
     _1password-gui
     chromium
 
     evolution
 
+    # Development
+    git
     jetbrains.phpstorm
 
+    # Communication
     tdesktop
     whatsapp-for-linux
     signal-desktop
