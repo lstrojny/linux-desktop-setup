@@ -1,10 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
-{
+with (import ./settings.nix);
+{ config, pkgs, ... }: {
   nix = {
     package = pkgs.nixFlakes; # or versioned attributes like nix_2_7
     extraOptions = ''
@@ -107,7 +105,7 @@
     isNormalUser = true;
     createHome = true;
     home = "/home/lstrojny";
-    description = "Lars Strojny";
+    description = name;
     extraGroups = [ "wheel" "networkmanager" ];
     hashedPassword =
       "$6$3wh8GiYYOgFm321d$8CXIw54QA8FrrbbQB/XtIMUQq11CFVPzvMwg1vdDgW7bTFd92i6pihw9JQR2nqQfinCpK0dVgdRp7XuazWvaL.";
@@ -177,8 +175,10 @@
     fontconfig.defaultFonts.emoji = [ "JoyPixels" ];
   };
 
-  programs.git.package = pkgs.gitFull;
-  programs.git.lfs.enable = true;
+  programs.git = {
+    package = pkgs.gitFull;
+    lfs.enable = true;
+  };
 
   # Bluetooth
   services.blueman.enable = true;
