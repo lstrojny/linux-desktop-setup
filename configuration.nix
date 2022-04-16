@@ -155,6 +155,7 @@
     tdesktop
     whatsapp-for-linux
     signal-desktop
+    element-desktop
   ];
 
   programs.vim.defaultEditor = true;
