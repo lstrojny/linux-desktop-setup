@@ -13,4 +13,12 @@ with (import ./settings.nix); {
       s = "stash";
     };
   };
+  programs.bash = {
+    enable = true;
+    historyControl = [ "ignorespace" ];
+    shellAliases = { g = "git"; };
+    bashrcExtra = ''
+      PATH=$PATH:./vendor/bin:./node-modules/bin
+    '';
+  };
 }
