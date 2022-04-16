@@ -12,7 +12,9 @@
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
-        ({ pkgs, ... }: { system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev; })
+        ({ pkgs, ... }: {
+          system.configurationRevision = if self ? rev then self.rev else throw "Refusing to build from dirty git tree";
+        })
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
