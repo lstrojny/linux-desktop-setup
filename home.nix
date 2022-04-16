@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 with (import ./settings.nix); {
   programs.git = {
     enable = true;
@@ -19,23 +19,14 @@ with (import ./settings.nix); {
     historyControl = [ "ignorespace" ];
     shellOptions =
       [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "nocaseglob" "cdspell" "nocasematch" ];
-    shellAliases = { g = "git"; };
+    shellAliases = aliases;
     bashrcExtra = ''
       PATH=$PATH:./vendor/bin:./node-modules/bin
     '';
     initExtra = ''
-      function __configure_bash_completion_for_alias() {
-          local original=$1
-          local alias=$2
-          type __load_completion &>/dev/null && __load_completion $original
-          local cmd=(`complete -p $original`)
-          unset cmd[''${#cmd[@]}-1]
-          eval ''${cmd[*]} $alias
-      }
-
-      ${lib.strings.concatStrings
-      (lib.attrsets.mapAttrsToList (alias: original: "__configure_bash_completion_for_alias ${original} ${alias}")
-        shellAliases)}
+      # Configure bash completion for aliases
+      . `which complete_alias`
+      complete -F _complete_alias "''${!BASH_ALIASES[@]}"
     '';
   };
   programs.vim = {

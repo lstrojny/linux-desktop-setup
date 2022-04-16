@@ -112,6 +112,7 @@ with (import ./settings.nix);
   };
   security.sudo.wheelNeedsPassword = false;
 
+  environment.shellAliases = aliases;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -126,6 +127,9 @@ with (import ./settings.nix);
     shellcheck
     shfmt
     xclip
+
+    # Shell
+    complete-alias
 
     # Nix tools
     nix-index
