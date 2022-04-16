@@ -7,11 +7,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
     nixosConfigurations.hackstrojny = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
+        ({ pkgs, ... }: { system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev; })
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
