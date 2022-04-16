@@ -17,19 +17,21 @@ with (import ./settings.nix); {
   programs.bash = rec {
     enable = true;
     historyControl = [ "ignorespace" ];
+    shellOptions =
+      [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "nocaseglob" "cdspell" "nocasematch" ];
     shellAliases = { g = "git"; };
     bashrcExtra = ''
       PATH=$PATH:./vendor/bin:./node-modules/bin
     '';
     initExtra = ''
-        function __configure_bash_completion_for_alias() {
+      function __configure_bash_completion_for_alias() {
           local original=$1
           local alias=$2
           type __load_completion &>/dev/null && __load_completion $original
           local cmd=(`complete -p $original`)
           unset cmd[''${#cmd[@]}-1]
           eval ''${cmd[*]} $alias
-        }
+      }
 
       ${lib.strings.concatStrings
       (lib.attrsets.mapAttrsToList (alias: original: "__configure_bash_completion_for_alias ${original} ${alias}")
