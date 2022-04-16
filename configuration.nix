@@ -127,6 +127,7 @@ with (import ./settings.nix);
     shellcheck
     shfmt
     xclip
+    tpm2-tools
 
     # Shell
     complete-alias
