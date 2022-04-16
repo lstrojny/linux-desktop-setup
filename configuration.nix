@@ -124,6 +124,9 @@
     vim_configurable
     wget
     lsof
+    shellcheck
+    shfmt
+    xclip
 
     # Nix tools
     nix-index

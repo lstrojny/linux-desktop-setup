@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+gitStaged0() {
+    git diff --staged --diff-filter=ACMR --name-only HEAD -z
+}
+
+PATCH=$(mktemp)
+
+git diff --raw --binary --unified=0 --no-color --no-ext-diff > $PATCH
+git checkout .
+
+echo "Running nixfmt"
+gitStaged0 | xargs -I% -0 find % -name "*.nix" -exec nixfmt --width=120 {} \;
+
+echo "Running shfmt"
+gitStaged0 | xargs -I% -0 find % -path "hooks/*" -exec shfmt -w -p -i 4 -sr -ci -s {} \;
+
+echo "Running shellcheck"
+gitStaged0 | xargs -I% -0 find % -path "hooks/*" -exec shellcheck --norc -s sh -S style {} \;
+
+gitStaged0 | xargs -I% -0 git add %
+
+git apply --whitespace=nowarn --recount --unidiff-zero --allow-empty $PATCH
