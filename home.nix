@@ -31,7 +31,7 @@ with (import ./settings.nix); {
   };
   programs.vim = {
     enable = true;
-    plugins = [ pkgs.vimPlugins.vim-polyglot pkgs.vimPlugins.vim-scala pkgs.vimPlugins.vim-colors-solarized ];
+    plugins = with pkgs.vimPlugins; [ vim-polyglot vim-scala vim-colors-solarized ];
     settings = {
       background = "dark";
       expandtab = true;
@@ -39,6 +39,8 @@ with (import ./settings.nix); {
       history = 10000;
     };
     extraConfig = ''
+      silent! source $VIMRUNTIME/defaults.vim
+
       " Use system clipboard
       set clipboard=unnamedplus
 
