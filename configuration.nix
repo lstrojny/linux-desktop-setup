@@ -31,15 +31,16 @@
         ];
       });
     })
-    (import (fetchGit { url = "https://github.com/nix-community/nixt/"; }))
+    (import (fetchGit {
+      url = "https://github.com/nix-community/nixt/";
+      rev = "6338fcdbaf34c9eba72acfc7bc6a2e6cd7b4e3fe";
+    }))
   ];
 
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./hardware-configuration-zfs.nix
   ];
-
-  system.copySystemConfiguration = true;
 
   networking.hostName = "hackstrojny";
   networking.hostId = "24041986";
