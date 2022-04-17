@@ -15,4 +15,4 @@ Playground to set up a Linux desktop with nixOS
 `nix-env -f "<nixpkgs>" -qaP -A vimPlugins` show all vim plugin packages
 
 ### Configure hooks
-Run `git config core.hooksPath hooks` to set up git hooks for autoformatting/checking
+Run `git config core.hooksPath .git-hooks` to set up git hooks for autoformatting/checking
