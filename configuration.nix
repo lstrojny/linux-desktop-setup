@@ -175,12 +175,7 @@ with (import ./settings.nix);
 
   programs.gnome-terminal.enable = true;
   fonts = {
-    fonts = with pkgs; [
-      fira-code
-      fira-code-symbols
-      joypixels
-
-    ];
+    fonts = with pkgs; [ fira-code fira-code-symbols joypixels powerline-fonts ];
     fontconfig.defaultFonts.monospace = [ "Fira Code Medium" ];
     fontconfig.defaultFonts.emoji = [ "JoyPixels" ];
   };

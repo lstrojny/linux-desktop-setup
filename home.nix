@@ -39,6 +39,8 @@ with (import ./settings.nix); {
       vim-nixhash
       vim-autoformat
       vim-fugitive
+      vim-airline
+      vim-airline-themes
     ];
     settings = {
       background = "dark";
@@ -86,6 +88,9 @@ with (import ./settings.nix); {
       noremap <F3> :Autoformat<CR>
       " Autoformat on save
       au BufWrite * :Autoformat
+
+      " airline
+      let g:airline_powerline_fonts = 1
     '';
   };
 }
