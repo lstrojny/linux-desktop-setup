@@ -21,6 +21,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.extraSpecialArgs = specialArgs;
           home-manager.users.lstrojny.imports = [ ./local/lstrojny.nix ];
+          home-manager.users.root.imports = [ ./local/root.nix ];
         })
       ];
     };
