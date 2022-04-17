@@ -21,6 +21,7 @@
     shellcheck
     shfmt
     xclip
+    powerline-go
 
     # Networking
     dig

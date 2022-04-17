@@ -1,5 +1,5 @@
 { settings, ... }: {
-  programs.bash = rec {
+  programs.bash = {
     enable = true;
     historyControl = [ "ignorespace" ];
     shellOptions =
@@ -13,5 +13,14 @@
       . `which complete_alias`
       complete -F _complete_alias "''${!BASH_ALIASES[@]}"
     '';
+  };
+  programs.powerline-go = {
+    enable = true;
+    settings = {
+      path-aliases = "/etc/nixos=NIXOS";
+      colorize-hostname = "";
+      cwd-max-dir-size = 3;
+      max-width = 40;
+    };
   };
 }
