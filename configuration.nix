@@ -40,10 +40,7 @@ with (import ./settings.nix);
     }))
   ];
 
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./hardware-configuration-zfs.nix
-  ];
+  imports = [ ./hardware-configuration.nix ./hardware-configuration-zfs.nix ];
 
   # Localization
   time.timeZone = "Europe/Berlin";
@@ -120,13 +117,13 @@ with (import ./settings.nix);
     htop
     usbutils
     pciutils
+    lsof
 
     # Security
     cryptsetup
     tpm2-tools
 
     vim_configurable
-    lsof
 
     # Shell
     shellcheck
