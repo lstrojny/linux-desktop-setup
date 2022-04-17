@@ -116,16 +116,26 @@ with (import ./settings.nix);
   environment.systemPackages = with pkgs; [
     # Utilities
     unzip
-    usbutils
     powertop
+    htop
+    usbutils
+    pciutils
+
+    # Security
     cryptsetup
+    tpm2-tools
+
     vim_configurable
-    wget
     lsof
+
+    # Shell
     shellcheck
     shfmt
     xclip
-    tpm2-tools
+
+    # Networking
+    dig
+    wget
 
     # Shell
     complete-alias
