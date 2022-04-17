@@ -7,19 +7,21 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations.hackstrojny = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, ... }@attrs: {
+    nixosConfigurations.hackstrojny = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
+      specialArgs = attrs // { settings = (import ./settings.nix); };
       modules = [
         ./configuration.nix
         ({ pkgs, ... }: {
           system.configurationRevision = if self ? rev then self.rev else throw "Refusing to build from dirty git tree";
         })
         home-manager.nixosModules.home-manager
-        {
+        ({ pkgs, ... }: {
           home-manager.useGlobalPkgs = true;
-          home-manager.users.lstrojny = import ./home.nix;
-        }
+          home-manager.extraSpecialArgs = specialArgs;
+          home-manager.users.lstrojny.imports = [ ./local/lstrojny.nix ];
+        })
       ];
     };
   };

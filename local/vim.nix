@@ -1,34 +1,4 @@
-{ pkgs, ... }:
-with (import ./settings.nix); {
-  programs.git = {
-    enable = true;
-    userName = name;
-    userEmail = email;
-    aliases = {
-      st = "status";
-      cm = "commit -m";
-      pick = "cherry-pick";
-      amend = "commit --ammend";
-      diffs = "diff --cached";
-      g = "grep";
-      s = "stash";
-    };
-  };
-  programs.bash = rec {
-    enable = true;
-    historyControl = [ "ignorespace" ];
-    shellOptions =
-      [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "nocaseglob" "cdspell" "nocasematch" ];
-    shellAliases = aliases;
-    bashrcExtra = ''
-      PATH=$PATH:./vendor/bin:./node-modules/bin
-    '';
-    initExtra = ''
-      # Configure bash completion for aliases
-      . `which complete_alias`
-      complete -F _complete_alias "''${!BASH_ALIASES[@]}"
-    '';
-  };
+{ pkgs, ... }: {
   programs.vim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
