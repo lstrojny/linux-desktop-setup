@@ -31,7 +31,15 @@ with (import ./settings.nix); {
   };
   programs.vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-polyglot vim-scala vim-colors-solarized vim-nix vim-nixhash vim-autoformat ];
+    plugins = with pkgs.vimPlugins; [
+      vim-polyglot
+      vim-scala
+      vim-colors-solarized
+      vim-nix
+      vim-nixhash
+      vim-autoformat
+      vim-fugitive
+    ];
     settings = {
       background = "dark";
       expandtab = true;
