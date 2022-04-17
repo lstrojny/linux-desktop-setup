@@ -3,8 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 with (import ./settings.nix);
 { config, pkgs, ... }: {
+  # Enable experimental flakes support
   nix = {
-    package = pkgs.nixFlakes; # or versioned attributes like nix_2_7
+    package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -17,6 +18,8 @@ with (import ./settings.nix);
       enableWideVine = true;
     };
   };
+
+  # Patch bluez to fix MX Master connectivity on reboot/sleep
   nixpkgs.overlays = with builtins; [
     (self: super: {
       bluezFull = super.bluezFull.overrideAttrs (originalAttributes: rec {
@@ -29,6 +32,8 @@ with (import ./settings.nix);
         ];
       });
     })
+
+    # Install nix unit testing framework
     (import (fetchGit {
       url = "https://github.com/nix-community/nixt/";
       rev = "6338fcdbaf34c9eba72acfc7bc6a2e6cd7b4e3fe";
@@ -40,26 +45,18 @@ with (import ./settings.nix);
     ./hardware-configuration-zfs.nix
   ];
 
+  # Localization
+  time.timeZone = "Europe/Berlin";
+  i18n.defaultLocale = "de_DE.UTF-8";
+
+  # Networking
   networking.hostName = "hackstrojny";
   networking.hostId = "24041986";
   networking.wireless.enable = false;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.enp6s0.useDHCP = true;
   networking.interfaces.enp9s0.useDHCP = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "de_DE.UTF-8";
 
   # TTY configuraton
   console = {
@@ -68,6 +65,7 @@ with (import ./settings.nix);
     keyMap = "de";
     earlySetup = true;
   };
+  # KMS based TTY replacement
   services.kmscon = {
     enable = true;
     hwRender = true;
