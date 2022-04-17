@@ -31,7 +31,7 @@ with (import ./settings.nix); {
   };
   programs.vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-polyglot vim-scala vim-colors-solarized vim-nix vim-nixhash ];
+    plugins = with pkgs.vimPlugins; [ vim-polyglot vim-scala vim-colors-solarized vim-nix vim-nixhash vim-autoformat ];
     settings = {
       background = "dark";
       expandtab = true;
@@ -62,7 +62,7 @@ with (import ./settings.nix); {
       cnoreabbrev W w
       cnoreabbrev Q q
 
-      "Make command tab completion usable
+      " Make command tab completion usable
       set wildmenu
       set wildmode=list:longest
 
@@ -70,6 +70,14 @@ with (import ./settings.nix); {
 
       " Solarized
       colorscheme solarized
+
+      " vim-autoformat
+      let g:formatdef_nix_format = '"nixfmt --width=".&textwidth'
+      let g:formatdef_shfmt = '"shfmt -p -sr -ci -s -i ".(&expandtab ? shiftwidth() : "0")'
+      " Map F3 to autoformatter
+      noremap <F3> :Autoformat<CR>
+      " Autoformat on save
+      au BufWrite * :Autoformat
     '';
   };
 }
