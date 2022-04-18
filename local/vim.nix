@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, settings, ... }: {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
@@ -16,7 +16,7 @@
       set background=dark
       set expandtab
       set tabstop=4
-      set history=10000
+      set history=${builtins.toString settings.buffersize}
 
       " Use system clipboard
       set clipboard=unnamedplus

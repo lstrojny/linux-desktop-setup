@@ -2,6 +2,7 @@
   programs.bash = {
     enable = true;
     historyControl = [ "ignorespace" ];
+    historySize = settings.buffersize;
     shellOptions =
       [ "histappend" "checkwinsize" "extglob" "globstar" "checkjobs" "nocaseglob" "cdspell" "nocasematch" ];
     shellAliases = {
