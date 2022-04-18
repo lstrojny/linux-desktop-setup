@@ -1,7 +1,4 @@
 { pkgs, settings, ... }: {
-  environment.shellAliases = settings.aliases;
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Utilities
     unzip
@@ -15,7 +12,7 @@
     cryptsetup
     tpm2-tools
 
-    vim_configurable
+    neovim
 
     # Shell
     shellcheck
@@ -65,7 +62,10 @@
     element-desktop
   ];
 
-  programs.vim.defaultEditor = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
 
   programs.git = {
     package = pkgs.gitFull;

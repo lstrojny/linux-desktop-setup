@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  programs.vim = {
+  programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
       vim-polyglot
@@ -12,14 +12,11 @@
       vim-airline
       vim-airline-themes
     ];
-    settings = {
-      background = "dark";
-      expandtab = true;
-      tabstop = 4;
-      history = 10000;
-    };
     extraConfig = ''
-      silent! source $VIMRUNTIME/defaults.vim
+      set background=dark
+      set expandtab
+      set tabstop=4
+      set history=10000
 
       " Use system clipboard
       set clipboard=unnamedplus
@@ -61,6 +58,12 @@
 
       " airline
       let g:airline_powerline_fonts = 1
+
+      " Last cursor position
+      autocmd BufReadPost *
+         \ if line("'\"") > 0 && line("'\"") <= line("$") |
+         \   exe "normal! g`\"" |
+         \ endif
     '';
   };
 }
