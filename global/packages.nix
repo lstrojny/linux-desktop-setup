@@ -37,6 +37,7 @@
 
     # GNOME
     gnomeExtensions.emoji-selector
+    gnomeExtensions.clipboard-history
     gnomeExtensions.impatience
     gnomeExtensions.sound-output-device-chooser
     gnomeExtensions.paperwm
