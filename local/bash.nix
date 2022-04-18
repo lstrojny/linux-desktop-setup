@@ -12,6 +12,12 @@
       # Configure bash completion for aliases
       . `which complete_alias`
       complete -F _complete_alias "''${!BASH_ALIASES[@]}"
+
+      # Make cd follow symlinks
+      set -o physical
+
+      # Searchpath for cd
+      CDPATH="/etc"
     '';
   };
   programs.powerline-go = {
