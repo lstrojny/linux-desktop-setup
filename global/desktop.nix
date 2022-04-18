@@ -15,11 +15,4 @@
     fontconfig.defaultFonts.monospace = [ "Fira Code Medium" ];
     fontconfig.defaultFonts.emoji = [ "JoyPixels" ];
   };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 }

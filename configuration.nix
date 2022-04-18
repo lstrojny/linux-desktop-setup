@@ -40,7 +40,6 @@
   ];
 
   imports = [
-    ./global/bluetooth.nix
     ./global/localization.nix
     ./global/networking.nix
     ./global/tty.nix
@@ -48,7 +47,6 @@
     ./global/users.nix
     ./global/packages.nix
     ./global/hardware.nix
-    ./global/zfs.nix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
