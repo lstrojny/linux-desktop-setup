@@ -1,16 +1,21 @@
-{ pkgs, settings, ... }: {
+{ pkgs, settings, nix-colors, ... }:
+let inherit (nix-colors.lib { inherit pkgs; }) vimThemeFromScheme;
+in {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
       vim-polyglot
       vim-scala
-      vim-colors-solarized
       vim-nix
       vim-nixhash
       vim-autoformat
       vim-fugitive
       vim-airline
       vim-airline-themes
+      {
+        plugin = vimThemeFromScheme { scheme = settings.colorscheme; };
+        config = "colorscheme nix-${settings.colorscheme.slug}";
+      }
     ];
     extraConfig = ''
       set background=dark
@@ -44,9 +49,6 @@
       set wildmode=list:longest
 
       set title
-
-      " Solarized
-      colorscheme solarized
 
       " vim-autoformat
       let g:formatdef_nix_format = '"nixfmt --width=".&textwidth'

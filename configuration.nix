@@ -31,6 +31,22 @@
         ];
       });
     })
+    (self: super: {
+      alacritty = super.alacritty.overrideAttrs (originalAttributes: {
+        patches = originalAttributes.patches or [ ] ++ [
+          (self.fetchpatch {
+            name = "alacritty-colors.diff";
+            url =
+              "https://gist.github.com/lstrojny/84a2a72d73c42ccd696592c6680746f4/raw/9843391daa93190975ffe127da8a81046ddbc25c/alacritty-colors.diff";
+            sha256 = "1i3527mgpbw39cwmdaqvkdw5kk2vzr5w9faw3j05zxbhw2csn4qd";
+          })
+        ];
+        buildInputs = originalAttributes.buildInputs ++ [ pkgs.makeWrapper ];
+        postInstall = originalAttributes.postInstall or "" + ''
+          wrapProgram "$out/bin/alacritty" --set WAYLAND_DISPLAY=""
+        '';
+      });
+    })
 
     # Install nix unit testing framework
     (import (fetchGit {

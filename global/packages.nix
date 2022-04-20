@@ -1,4 +1,4 @@
-{ pkgs, settings, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # Utilities
     unzip
@@ -7,18 +7,22 @@
     usbutils
     pciutils
     lsof
+    jq
+    yq-go
 
     # Security
     cryptsetup
     tpm2-tools
 
     neovim
+    tmux
 
     # Shell
     shellcheck
     shfmt
     xclip
     powerline-go
+    terminal-colors
 
     # Networking
     dig
@@ -48,7 +52,7 @@
     # Core desktop apps
     _1password-gui
     chromium
-
+    alacritty
     evolution
 
     # Development

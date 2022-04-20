@@ -1,8 +1,8 @@
 { settings, ... }: {
-  programs.git = {
+  programs.git = with settings.identity; {
     enable = true;
-    userName = settings.name;
-    userEmail = settings.email;
+    userName = name;
+    userEmail = email;
     aliases = {
       st = "status";
       cm = "commit -m";
