@@ -93,10 +93,10 @@
     }
   ];
 
-  hardware.enableRedistributableFirmware = true;
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
+  hardware.cpu.amd.updateMicrocode = true;
   # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
+  hardware.video.hidpi.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;
