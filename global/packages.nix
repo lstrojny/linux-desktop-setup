@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, settings, ... }: {
   environment.systemPackages = with pkgs; [
     # Utilities
     unzip
@@ -45,7 +45,6 @@
     materia-theme
 
     # Core desktop apps
-    _1password-gui
     chromium
     alacritty
     evolution
@@ -69,5 +68,12 @@
   programs.git = {
     package = pkgs.gitFull;
     lfs.enable = true;
+  };
+
+  programs._1password-gui = {
+    enable = true;
+    gid = 5000;
+    polkitPolicyOwners = [ settings.identity.nick ];
+    package = pkgs._1password-gui-beta;
   };
 }

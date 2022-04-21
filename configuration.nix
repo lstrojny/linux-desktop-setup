@@ -47,7 +47,7 @@
         '';
       });
     })
-
+    (self: super: { _1password-gui-beta = self.callPackage ./pkgs/_1password-gui-beta.nix { }; })
     # Install nix unit testing framework
     (import (fetchGit {
       url = "https://github.com/nix-community/nixt/";
@@ -65,6 +65,9 @@
     ./global/hardware.nix
   ];
 
+  environment.memoryAllocator.provider = "scudo";
+  environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -72,17 +75,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
