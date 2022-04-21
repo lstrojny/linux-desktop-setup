@@ -27,6 +27,11 @@
 
       # Searchpath for cd
       CDPATH="/etc"
+
+      # Automatically attach tmux
+      if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+        tmux has-session && exec tmux attach-session || exec tmux new-session
+      fi
     '';
   };
   programs.powerline-go = {
