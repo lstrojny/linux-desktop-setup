@@ -41,12 +41,7 @@
     gnomeExtensions.clipboard-history
     gnomeExtensions.impatience
     gnomeExtensions.sound-output-device-chooser
-    gnomeExtensions.paperwm
     gnomeExtensions.system-monitor
-    gnomeExtensions.pop-shell
-    gnomeExtensions.arcmenu
-    gnomeExtensions.tilingnome
-    gnomeExtensions.dash-to-dock
     materia-theme
 
     # Core desktop apps
