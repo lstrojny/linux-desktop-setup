@@ -45,7 +45,7 @@
     materia-theme
 
     # Core desktop apps
-    chromium
+    google-chrome-beta
     alacritty
     evolution
 
@@ -75,5 +75,55 @@
     gid = 5000;
     polkitPolicyOwners = [ settings.identity.nick ];
     package = pkgs._1password-gui-beta;
+  };
+
+  programs.chromium = {
+    enable = true;
+    extraOpts = {
+      HomepageLocation = "about:blank";
+      NewTabPageLocation = "about:blank";
+      PasswordManagerEnabled = false;
+      BrowserAddPersonEnabled = false;
+      AutofillCreditCardEnabled = false;
+      AutofillAddressEnabled = false;
+      PaymentMethodQueryEnabled = false;
+      SyncDisabled = true;
+      BrowserSignin = 0;
+      PromotionalTabsEnabled = false;
+      HttpsOnlyMode = "force_enabled";
+      HideWebStoreIcon = true;
+      EnableOnlineRevocationChecks = true;
+      DnsOverHttps = "automatic";
+      BuiltInDnsClientEnabled = false;
+      SpellcheckEnabled = true;
+      SpellcheckLanguage = [ "de" "en-US" ];
+      ExtensionSettings = {
+        # 1Password
+        "aeblfdkhhhdcdjpifhhbdiojplfjncoa" = {
+          "installation_mode" = "force_installed";
+          "update_url" = "https://clients2.google.com/service/update2/crx";
+        };
+        # uBlock Origin
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" = {
+          "installation_mode" = "force_installed";
+          "update_url" = "https://clients2.google.com/service/update2/crx";
+        };
+        # Super Agent (Cookie consent)
+        "neooppigbkahgfdhbpbhcccgpimeaafi" = {
+          "installation_mode" = "force_installed";
+          "update_url" = "https://clients2.google.com/service/update2/crx";
+        };
+        # Lighthouse
+        "blipmdconlkpinefehnmjammfjpmpbjk" = {
+          "installation_mode" = "force_installed";
+          "update_url" = "https://clients2.google.com/service/update2/crx";
+        };
+        # JSON viewer
+        "gbmdgpbipfallnflgajpaliibnhdgobh" = {
+          "installation_mode" = "force_installed";
+          "update_url" = "https://clients2.google.com/service/update2/crx";
+        };
+      };
+    };
   };
 }

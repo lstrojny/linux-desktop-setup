@@ -12,10 +12,6 @@
   nixpkgs.config = {
     allowUnfree = true;
     joypixels.acceptLicense = true;
-    chromium = {
-      commandLineArgs = [ "--enable-features=WebUIDarkMode" "--force-dark-mode" ];
-      enableWideVine = true;
-    };
   };
 
   # Patch bluez to fix MX Master connectivity on reboot/sleep
@@ -53,6 +49,11 @@
       url = "https://github.com/nix-community/nixt/";
       rev = "6338fcdbaf34c9eba72acfc7bc6a2e6cd7b4e3fe";
     }))
+    (self: super: {
+      google-chrome-beta = super.google-chrome-beta.override {
+        commandLineArgs = [ "--enable-features=WebUIDarkMode" "--force-dark-mode" ];
+      };
+    })
   ];
 
   imports = [
