@@ -37,12 +37,13 @@
       LESS="--mouse"
       # Syntax highlighting for less
       eval `lesspipe.sh`
-      LESS_TERMCAP_md=$'\e[01;35m' \
-      LESS_TERMCAP_me=$'\e[0m' \
-      LESS_TERMCAP_us=$'\e[01;32m' \
-      LESS_TERMCAP_ue=$'\e[0m' \
-      LESS_TERMCAP_so=$'\e[45;30m' \
-      LESS_TERMCAP_se=$'\e[0m' \
+      # Configure colors for less
+      export LESS_TERMCAP_md=`printf '\e[01;35m'`
+      export LESS_TERMCAP_me=`printf '\e[0m'`
+      export LESS_TERMCAP_us=`printf '\e[01;32m'`
+      export LESS_TERMCAP_ue=`printf '\e[0m'`
+      export LESS_TERMCAP_so=`printf '\e[45;30m'`
+      export LESS_TERMCAP_se=`printf '\e[0m'`
     '';
   };
   programs.powerline-go = {
