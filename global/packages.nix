@@ -23,7 +23,6 @@
     xclip
     powerline-go
     terminal-colors
-    python310Packages.pygments
     lesspipe
 
     # Networking
