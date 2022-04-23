@@ -66,6 +66,9 @@ in {
          \ if line("'\"") > 0 && line("'\"") <= line("$") |
          \   exe "normal! g`\"" |
          \ endif
+
+      " Fix mouse support through tmux
+      set mouse=a
     '';
   };
 }
