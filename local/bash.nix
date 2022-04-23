@@ -36,7 +36,7 @@
       # Mouse support in less
       LESS="--mouse"
       # Syntax highlighting for less
-      eval `lesspipe`
+      eval `lesspipe.sh`
       LESS_TERMCAP_md=$'\e[01;35m' \
       LESS_TERMCAP_me=$'\e[0m' \
       LESS_TERMCAP_us=$'\e[01;32m' \
