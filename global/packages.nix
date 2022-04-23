@@ -23,6 +23,7 @@
     xclip
     powerline-go
     terminal-colors
+    python310Packages.pygments
 
     # Networking
     dig
