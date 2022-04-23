@@ -28,6 +28,13 @@
 
       # Status bar
       set-option -g status-position top
+
+      # Activity and bell
+      set-option -g activity-action any
+      set-option -g bell-action any
+
+      # No escape delay, especially critical for vim
+      set-option -sg escape-time 0
     '';
   };
 }
