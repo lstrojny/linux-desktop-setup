@@ -13,6 +13,8 @@
       vim = "nvim";
       vi = "nvim";
       nvi = "nvim";
+      copy = "xclip -i -selection clipboard";
+      paste = "xclip -o -selection clipboard";
     };
     bashrcExtra = ''
       PATH=$PATH:./vendor/bin:./node-modules/bin
