@@ -98,6 +98,7 @@
       BuiltInDnsClientEnabled = false;
       SpellcheckEnabled = true;
       SpellcheckLanguage = [ "de" "en-US" ];
+      DefaultNotificationsSetting = 2;
       ExtensionSettings = {
         # 1Password
         "aeblfdkhhhdcdjpifhhbdiojplfjncoa" = {
