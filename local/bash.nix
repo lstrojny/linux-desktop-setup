@@ -35,6 +35,8 @@
 
       # Mouse support in less
       LESS="--mouse"
+      # Syntax highlighting for less
+      LESSOPEN='|pygmentize -g %s'
     '';
   };
   programs.powerline-go = {
