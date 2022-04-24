@@ -17,17 +17,6 @@
   # Patch bluez to fix MX Master connectivity on reboot/sleep
   nixpkgs.overlays = with builtins; [
     (self: super: {
-      bluezFull = super.bluezFull.overrideAttrs (originalAttributes: rec {
-        patches = originalAttributes.patches or [ ] ++ [
-          (self.fetchpatch {
-            name = "fix-mx-master-connectivity.diff";
-            url = "https://github.com/bluez/bluez/commit/7fe38a17f6bee713fde587487fc224b0ae390e8f.diff";
-            sha256 = "0iwpwlwkyqwc644fwd40snlvnwm1l48agq3y9sbizwksavmqd44v";
-          })
-        ];
-      });
-    })
-    (self: super: {
       alacritty = super.alacritty.overrideAttrs (originalAttributes: {
         buildInputs = originalAttributes.buildInputs ++ [ pkgs.makeWrapper ];
         postInstall = originalAttributes.postInstall or "" + ''
