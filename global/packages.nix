@@ -39,11 +39,11 @@
 
     # GNOME
     gnomeExtensions.emoji-selector
-    gnomeExtensions.clipboard-history
     gnomeExtensions.impatience
     gnomeExtensions.sound-output-device-chooser
     gnomeExtensions.system-monitor
     materia-theme
+    gnome.gpaste
 
     # Core desktop apps
     google-chrome-beta
