@@ -22,4 +22,6 @@ in {
   };
 
   home.packages = [ _1password-autostart ];
+
+  home.stateVersion = "21.11";
 }
