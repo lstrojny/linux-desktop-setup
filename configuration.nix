@@ -24,7 +24,6 @@
         '';
       });
     })
-    (self: super: { _1password-gui-beta = self.callPackage ./pkgs/_1password-gui-beta.nix { }; })
     # Install nix unit testing framework
     (import (fetchGit {
       url = "https://github.com/nix-community/nixt/";
